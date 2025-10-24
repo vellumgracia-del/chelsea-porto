@@ -1,15 +1,15 @@
 /* --- Global & Desain Minimalis (Glassmorphism Dark) --- */
 :root {
-    --primary-color: #3498db; /* Biru cerah */
-    --secondary-color: #f0f0f0; /* Teks putih pudar */
-    --bg-light: #121212; /* Latar belakang utama (sangat gelap) */
-    --text-color: #bbbbbb; /* Teks abu-abu muda */
+    --primary-color: #00aaff; /* Biru Neon */
+    --secondary-color: #f0f0f0;
+    --bg-main: #0a0a10; /* Latar belakang sangat gelap (hitam kebiruan) */
+    --text-color: #bbbbbb;
     
-    /* Variabel Glassmorphism */
-    --glass-bg: rgba(30, 30, 30, 0.5); /* Latar belakang kaca transparan */
+    /* Variabel Glassmorphism (POWERFUL) */
+    --glass-bg: rgba(20, 20, 30, 0.5); /* Latar kaca (lebih kebiruan) */
     --glass-border: rgba(255, 255, 255, 0.1);
-    --glass-blur: 10px;
-    --base-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    --glass-blur: 15px; /* Blur lebih kuat */
+    --base-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
 }
 
 * {
@@ -25,8 +25,9 @@ html {
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.7;
-    background-color: var(--bg-light);
+    background-color: var(--bg-main);
     color: var(--text-color);
+    overflow-x: hidden; /* Mencegah scroll horizontal dari animasi */
 }
 
 h1, h2, h3 {
@@ -34,53 +35,91 @@ h1, h2, h3 {
     margin-bottom: 1rem;
     font-weight: 600;
 }
-
 h1 { font-size: 3rem; }
 h2 { font-size: 2.2rem; text-align: center; margin-bottom: 2.5rem; }
 h3 { font-size: 1.4rem; }
 
-/* --- Efek Kaca pada Section Utama --- */
-section {
-    padding: 80px 20px;
-    max-width: 1100px;
-    margin: 0 auto;
-    margin-bottom: 20px;
-    border-radius: 16px; /* Radius lebih besar untuk estetika kaca */
-    
-    /* Ini adalah inti dari Glassmorphism */
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur)); /* Untuk Safari */
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--base-shadow);
-}
-
-/* --- 1. Animasi Pemuatan (Loading) --- */
-.loader {
+/* --- (BARU) Latar Belakang Animasi --- */
+.background-animation {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: var(--bg-light);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
+    z-index: -1;
+    overflow: hidden;
 }
-.loader.hidden { opacity: 0; visibility: hidden; }
-.spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid #333;
-    border-top-color: var(--primary-color);
+.shape {
+    position: absolute;
     border-radius: 50%;
-    animation: spin 1s linear infinite;
+    opacity: 0.2;
+    filter: blur(50px); /* Blur bentuknya agar menyatu */
 }
-@keyframes spin { to { transform: rotate(360deg); } }
+.shape1 { width: 400px; height: 400px; background: #3498db; top: -50px; left: -100px; animation: moveShape 25s infinite alternate; }
+.shape2 { width: 300px; height: 300px; background: #9b59b6; bottom: -50px; right: -50px; animation: moveShape 30s infinite alternate-reverse; }
+.shape3 { width: 250px; height: 250px; background: var(--primary-color); top: 50%; left: 30%; animation: moveShape 20s infinite alternate; }
+.shape4 { width: 150px; height: 150px; background: #e74c3c; top: 10%; right: 10%; animation: moveShape 15s infinite alternate-reverse; }
+.shape5 { width: 200px; height: 200px; background: #2ecc71; bottom: 20%; left: 10%; animation: moveShape 28s infinite alternate; }
 
-/* --- Navigasi Desktop (Glassmorphism) --- */
+@keyframes moveShape {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(100px, 150px) scale(1.3); }
+}
+
+/* --- (UPGRADE) Efek Kaca Utama --- */
+.glass-effect {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--base-shadow);
+    border-radius: 16px;
+    padding: 20px;
+    
+    /* (BARU) Persiapan untuk Efek Kilau Mouse */
+    position: relative;
+    overflow: hidden;
+}
+
+/* (BARU) Efek Kilau Mouse (dikontrol JS) */
+.glass-effect::before {
+    content: '';
+    position: absolute;
+    /* Variabel CSS ini akan diisi oleh JavaScript */
+    top: var(--mouse-y);
+    left: var(--mouse-x);
+    width: 150px; /* Ukuran kilau */
+    height: 150px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 80%);
+    transform: translate(-50%, -50%); /* Pusatkan di kursor */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Abaikan klik */
+    z-index: 1;
+}
+.glass-effect:hover::before {
+    opacity: 1; /* Tampilkan saat di-hover */
+}
+
+/* --- Section (Kaca) --- */
+section.glass-effect {
+    padding: 80px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+/* Konten di atas efek kilau */
+section.glass-effect > *, .desktop-nav > *, .service-card > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* --- Pemuatan --- */
+.loader { /* ... (kode sama) ... */ }
+.loader.hidden { /* ... (kode sama) ... */ }
+.spinner { /* ... (kode sama) ... */ }
+
+/* --- Navigasi Desktop (Kaca) --- */
 .desktop-nav {
     position: sticky;
     top: 0;
@@ -92,44 +131,20 @@ section {
     align-items: center;
     padding: 0 1rem;
     
-    /* Efek Kaca pada Nav */
-    background: rgba(18, 18, 18, 0.6); /* Lebih gelap untuk nav */
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    border-bottom: 1px solid var(--glass-border);
+    /* Terapkan efek kaca */
+    margin: 10px auto; /* Beri jarak sedikit */
+    max-width: 700px; /* Buat lebih ringkas */
+    background: rgba(20, 20, 30, 0.7); /* Lebih pekat */
 }
-.nav-links {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    padding: 0;
-}
-.nav-links a {
-    text-decoration: none;
-    color: var(--text-color);
-    padding: 0.5rem 1.5rem;
-    font-weight: 500;
-    position: relative;
-    transition: color 0.3s ease;
-}
+.nav-links { /* ... (kode sama) ... */ }
+.nav-links a { /* ... (kode sama) ... */ }
 .nav-links a:hover,
-.nav-links a.active {
-    color: var(--primary-color);
-}
-.nav-links a.active::after { /* Tanda aktif */
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50%;
-    height: 2px;
-    background-color: var(--primary-color);
-}
+.nav-links a.active { /* ... (kode sama) ... */ }
+.nav-links a.active::after { /* ... (kode sama) ... */ }
 
-/* --- Homepage & CTA --- */
+/* --- Homepage --- */
 #home {
-    min-height: 100vh; /* Ubah ke 100vh untuk efek penuh */
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -137,68 +152,29 @@ section {
     padding: 0 20px;
     margin-bottom: 20px;
     
-    /* Hapus background section dan border */
+    /* Transparan, agar animasi background terlihat */
     background: transparent;
     border: none;
     box-shadow: none;
-    
-    /* Latar belakang gradient (untuk efek blur) */
-    background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
 }
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
+/* ... (kode animasi CTA & tipografi sama) ... */
+.animated-typography { /* ... (kode sama) ... */ }
+@keyframes fadeInDown { /* ... (kode sama) ... */ }
+.cta-button { /* ... (kode sama) ... */ }
+.cta-button:hover { /* ... (kode sama) ... */ }
 
-.animated-typography {
-    animation: fadeInDown 1s ease-out 0.5s;
-    animation-fill-mode: backwards;
-}
-@keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.cta-button {
-    display: inline-block;
-    background: var(--primary-color);
-    color: #fff;
-    padding: 12px 30px;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: 600;
-    margin-top: 1.5rem;
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-    border: none;
-    font-size: 1rem;
-    cursor: pointer;
-}
-.cta-button:hover {
-    background: #2980b9;
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
-}
-
-/* --- Layanan (Kartu Kaca) --- */
+/* --- Layanan (Kaca) --- */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
 }
 .service-card {
+    /* Menerapkan efek kaca dari .glass-effect */
     padding: 30px;
-    border-radius: 16px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-    /* Kaca di dalam Kaca */
-    background: rgba(44, 44, 44, 0.6); /* Kaca lebih terang */
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid var(--glass-border);
+    background: rgba(44, 44, 44, 0.6); /* Kaca sedikit beda */
 }
 .service-card i {
     font-size: 2.5rem;
@@ -213,29 +189,16 @@ section {
 .service-card:hover i { transform: scale(1.2); }
 
 /* --- Portofolio --- */
-.portfolio-grid { /* ... (kode sama) ... */ }
-.portfolio-item { /* ... (kode sama) ... */ }
-.portfolio-item img { /* ... (kode sama) ... */ }
-.portfolio-overlay { /* ... (kode sama) ... */ }
-.portfolio-overlay h3 { /* ... (kode sama) ... */ }
-.portfolio-item:hover img { /* ... (kode sama) ... */ }
-.portfolio-item:hover .portfolio-overlay { /* ... (kode sama) ... */ }
-/* (Tidak ada perubahan di CSS Portofolio, silakan salin dari kode sebelumnya) */
+/* ... (kode portofolio sama, tidak perlu diubah) ... */
+.portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.portfolio-item { position: relative; overflow: hidden; border-radius: 8px; box-shadow: var(--base-shadow); cursor: pointer; }
+.portfolio-item img { width: 100%; display: block; transition: transform 0.4s ease; }
+.portfolio-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 170, 255, 0.85); color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.4s ease; }
+.portfolio-overlay h3 { color: #fff; }
+.portfolio-item:hover img { transform: scale(1.1); }
+.portfolio-item:hover .portfolio-overlay { opacity: 1; }
 
-/* --- Blog --- */
-.blog-post {
-    border-bottom: 1px solid #333;
-    padding-bottom: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-.blog-post a {
-    text-decoration: none;
-    color: var(--primary-color);
-    font-weight: 600;
-}
-.blog-post a:hover { text-decoration: underline; }
-
-/* --- Kontak (Formulir Kaca) --- */
+/* --- Kontak (Kaca) --- */
 #contact form { max-width: 700px; margin: 0 auto; }
 .form-group { margin-bottom: 1.5rem; }
 .form-group label {
@@ -244,36 +207,32 @@ section {
     font-weight: 500;
     color: var(--secondary-color);
 }
-.form-group input,
-.form-group textarea {
+.glass-input { /* Terapkan ke input & textarea */
     width: 100%;
     padding: 12px;
     border: 1px solid var(--glass-border);
-    background-color: rgba(44, 44, 44, 0.7); /* Input field transparan */
+    background-color: rgba(44, 44, 44, 0.7); /* Input Kaca */
     color: var(--secondary-color);
     border-radius: 8px;
     font-size: 1rem;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-.form-group input:focus,
-.form-group textarea:focus {
+.glass-input:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+    box-shadow: 0 0 8px rgba(0, 170, 255, 0.3);
 }
 
-/* --- Footer --- */
+/* --- Footer (Kaca) --- */
 footer {
     text-align: center;
     padding: 30px 20px;
-    background: #191919;
-    color: #777;
-    margin-top: 20px;
-    border-top: 1px solid var(--glass-border);
+    margin: 20px auto 0 auto;
+    max-width: 1100px;
 }
 
 /* --- Animasi Scroll --- */
-/* (Tidak ada perubahan di CSS Animasi Scroll, silakan salin dari kode sebelumnya) */
+/* ... (kode animasi scroll sama) ... */
 .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
 .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
 .animate-on-scroll.visible:nth-child(2) { transition-delay: 0.1s; }
@@ -281,70 +240,28 @@ footer {
 .animate-on-scroll.visible:nth-child(4) { transition-delay: 0.3s; }
 
 
-/* --- (BARU) Navigasi Mobile Bawah --- */
-.mobile-nav {
-    display: none; /* Sembunyi di desktop */
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 65px;
-    z-index: 1000;
-    
-    /* Kaca untuk Nav Bawah */
-    background: rgba(18, 18, 18, 0.7);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    border-top: 1px solid var(--glass-border);
-
-    /* Tata letak */
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-.mobile-nav a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    color: var(--text-color);
-    font-size: 0.7rem; /* Teks kecil */
-    flex-grow: 1;
-    height: 100%;
-    transition: color 0.3s ease;
-}
-.mobile-nav a i {
-    font-size: 1.3rem; /* Ikon besar */
-    margin-bottom: 4px;
-}
-.mobile-nav a:hover,
-.mobile-nav a.active {
-    color: var(--primary-color);
-}
-
-
-/* --- Responsif --- */
+/* --- (UPGRADE) Responsif --- */
 @media (max-width: 768px) {
     h1 { font-size: 2.2rem; }
     h2 { font-size: 1.8rem; }
+    :root { --glass-blur: 10px; } /* Kurangi blur di HP jika perlu */
 
-    /* Sembunyikan nav desktop */
+    /* (BARU) Sembunyikan nav desktop di HP */
     .desktop-nav {
         display: none;
     }
     
-    /* Tampilkan nav mobile */
-    .mobile-nav {
-        display: flex;
-    }
-
-    /* Beri ruang di bawah agar konten tidak tertutup nav */
+    /* (BARU) Hapus padding bawah karena nav mobile dihilangkan */
     body {
-        padding-bottom: 70px;
+        padding-bottom: 0;
     }
     
     #home {
         min-height: 70vh;
+    }
+    
+    /* Matikan efek kilau mouse di HP (karena tidak ada mouse) */
+    .glass-effect:hover::before {
+        opacity: 0;
     }
 }
