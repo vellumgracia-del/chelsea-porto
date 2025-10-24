@@ -1,0 +1,346 @@
+/* --- Global & Desain Minimalis --- */
+:root {
+    --primary-color: #007bff; /* Biru */
+    --secondary-color: #333; /* Hitam gelap */
+    --bg-light: #f9f9f9; /* Latar belakang terang */
+    --bg-white: #ffffff;
+    --text-color: #555;
+    --base-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --hover-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    /* Transisi Halaman (via Navigasi) */
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.7;
+    background-color: var(--bg-light);
+    color: var(--text-color);
+}
+
+h1, h2, h3 {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.2rem; text-align: center; margin-bottom: 2.5rem; }
+h3 { font-size: 1.4rem; }
+
+section {
+    padding: 80px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+    background-color: var(--bg-white);
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: var(--base-shadow);
+}
+
+/* --- 1. Animasi Pemuatan (Loading) --- */
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--bg-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--bg-light);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* --- Navigasi Intuitif --- */
+nav {
+    position: sticky;
+    top: 0;
+    background: var(--bg-white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 100%;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+}
+nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+/* Interaksi Mikro (Hover) Navigasi */
+nav a:hover {
+    color: var(--primary-color);
+}
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+nav a:hover::after {
+    width: 60%;
+}
+
+/* --- Homepage & CTA --- */
+#home {
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    background-color: var(--bg-light);
+    box-shadow: none;
+    margin-bottom: 20px;
+    /* Animasi Latar Belakang (Gradien Halus) */
+    background: linear-gradient(-45deg, #eef7ff, #ffffff, #f9f8ff);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Animasi Tipografi (Typography) */
+.animated-typography {
+    animation: fadeInDown 1s ease-out 0.5s;
+    animation-fill-mode: backwards;
+}
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* CTA & Interaksi Mikro (Hover) */
+.cta-button {
+    display: inline-block;
+    background: var(--primary-color);
+    color: var(--bg-white);
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.cta-button:hover {
+    background: #0056b3;
+    transform: translateY(-3px) scale(1.05); /* Hirarki Visual */
+    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+}
+
+/* --- Layanan --- */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+.service-card {
+    background: var(--bg-light);
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.service-card i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+/* Interaksi Mikro (Hover) pada Kartu */
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--hover-shadow);
+}
+.service-card:hover i {
+    transform: scale(1.2);
+}
+
+/* --- Portofolio --- */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+.portfolio-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: var(--base-shadow);
+    cursor: pointer;
+}
+.portfolio-item img {
+    width: 100%;
+    display: block;
+    transition: transform 0.4s ease;
+}
+.portfolio-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 123, 255, 0.8);
+    color: var(--bg-white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+.portfolio-overlay h3 { color: var(--bg-white); }
+/* Interaksi Mikro (Hover) Portofolio */
+.portfolio-item:hover img {
+    transform: scale(1.1);
+}
+.portfolio-item:hover .portfolio-overlay {
+    opacity: 1;
+}
+
+/* --- Blog --- */
+.blog-post {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.blog-post a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+.blog-post a:hover {
+    text-decoration: underline;
+}
+
+/* --- Kontak & Animasi Umpan Balik --- */
+#contact form {
+    max-width: 700px;
+    margin: 0 auto;
+}
+.form-group {
+    margin-bottom: 1.5rem;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+/* Interaksi Mikro (Focus) */
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+#form-status {
+    margin-top: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+/* Animasi Umpan Balik (Feedback) */
+#form-status.success {
+    color: green;
+}
+#form-status.error {
+    color: red;
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    background: var(--secondary-color);
+    color: #aaa;
+    margin-top: 20px;
+}
+
+/* --- Animasi Masuk saat Menggulir (Scroll-triggered) --- */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* Menambahkan delay pada grid/list items */
+.animate-on-scroll.visible:nth-child(2) { transition-delay: 0.1s; }
+.animate-on-scroll.visible:nth-child(3) { transition-delay: 0.2s; }
+.animate-on-scroll.visible:nth-child(4) { transition-delay: 0.3s; }
+
+
+/* --- Responsif (Performa Optimal di Seluler) --- */
+@media (max-width: 768px) {
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+
+    nav ul {
+        flex-wrap: wrap;
+        padding: 0.5rem 0;
+    }
+    nav li {
+        padding: 0.2rem 0.5rem;
+    }
+    nav a {
+        padding: 0.5rem;
+    }
+
+    #home {
+        min-height: 70vh;
+    }
+}
