@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio Profesional (Dark Mode)</title>
+    <title>Portofolio Glassmorphism</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -13,25 +13,20 @@
         <div class="spinner"></div>
     </div>
 
-    <nav>
-        <div class="hamburger-menu">
-            <i class="fas fa-bars"></i>
-        </div>
-        
+    <nav class="desktop-nav">
         <ul class="nav-links">
-            <li><a href="#home">Beranda</a></li>
-            <li><a href="#about">Tentang</a></li>
-            <li><a href="#services">Layanan</a></li>
-            <li><a href="#portfolio">Portofolio</a></li>
-            <li><a href="#blog">Blog</a></li>
-            <li><a href="#contact">Kontak</a></li>
+            <li><a href="#home" class="nav-link active">Beranda</a></li>
+            <li><a href="#about" class="nav-link">Tentang</a></li>
+            <li><a href="#services" class="nav-link">Layanan</a></li>
+            <li><a href="#portfolio" class="nav-link">Portofolio</a></li>
+            <li><a href="#contact" class="nav-link">Kontak</a></li>
         </ul>
     </nav>
 
     <header id="home">
         <div class="hero-content">
             <h1 class="animated-typography">Halo, Saya Programmer</h1>
-            <p>Saya mengubah ide menjadi solusi digital yang fungsional dan elegan.</p>
+            <p>Estetika Glassmorphism. Solusi digital yang fungsional dan elegan.</p>
             <a href="#portfolio" class="cta-button">Lihat Karya Saya</a>
         </div>
     </header>
@@ -39,7 +34,7 @@
     <main>
         <section id="about" class="animate-on-scroll">
             <h2>Tentang Saya</h2>
-            <p>Saya adalah seorang pengembang web dengan pengalaman 5 tahun dalam membangun aplikasi yang skalabel dan responsif. Misi saya adalah menciptakan teknologi yang tidak only menyelesaikan masalah, tetapi juga memberikan pengalaman pengguna yang menyenangkan.</p>
+            <p>Saya adalah seorang pengembang web dengan pengalaman 5 tahun dalam membangun aplikasi yang skalabel dan responsif. Misi saya adalah menciptakan teknologi yang tidak hanya menyelesaikan masalah, tetapi juga memberikan pengalaman pengguna yang menyenangkan.</p>
         </section>
 
         <section id="services" class="animate-on-scroll">
@@ -48,17 +43,17 @@
                 <div class="service-card animate-on-scroll">
                     <i class="fas fa-code"></i>
                     <h3>Web Development</h3>
-                    <p>Pengembangan website kustom dari awal menggunakan teknologi modern.</p>
+                    <p>Pengembangan website kustom dari awal.</p>
                 </div>
                 <div class="service-card animate-on-scroll">
                     <i class="fas fa-mobile-alt"></i>
                     <h3>Mobile Apps</h3>
-                    <p>Membangun aplikasi mobile cross-platform yang intuitif.</p>
+                    <p>Membangun aplikasi mobile cross-platform.</p>
                 </div>
                 <div class="service-card animate-on-scroll">
                     <i class="fas fa-search-dollar"></i>
                     <h3>Konsultasi SEO</h3>
-                    <p>Membantu website Anda mendapatkan peringkat teratas di Google.</p>
+                    <p>Membantu website Anda di peringkat Google.</p>
                 </div>
             </div>
         </section>
@@ -90,20 +85,6 @@
             </div>
         </section>
 
-        <section id="blog" class="animate-on-scroll">
-            <h2>Blog Terbaru</h2>
-            <article class="blog-post animate-on-scroll">
-                <h3>5 Tips Optimasi Performa Website di 2025</h3>
-                <p>Pelajari cara membuat website Anda dimuat lebih cepat...</p>
-                <a href="#">Baca Selengkapnya</a>
-            </article>
-            <article class="blog-post animate-on-scroll">
-                <h3>Mengapa Desain Minimalis Penting?</h3>
-                <p>Desain yang bersih bukan only soal estetika, tapi juga fungsionalitas...</p>
-                <a href="#">Baca Selengkapnya</a>
-            </article>
-        </section>
-
         <section id="contact" class="animate-on-scroll">
             <h2>Hubungi Saya</h2>
             <p>Ada proyek atau ide yang ingin didiskusikan? Mari terhubung.</p>
@@ -129,6 +110,25 @@
     <footer>
         <p>&copy; 2025. Dibuat dengan cinta dan kode.</p>
     </footer>
+
+    <nav class="mobile-nav">
+        <a href="#home" class="nav-link active">
+            <i class="fas fa-home"></i>
+            <span>Beranda</span>
+        </a>
+        <a href="#portfolio" class="nav-link">
+            <i class="fas fa-briefcase"></i>
+            <span>Portofolio</span>
+        </a>
+        <a href="#about" class="nav-link">
+            <i class="fas fa-user"></i>
+            <span>Tentang</span>
+        </a>
+        <a href="#contact" class="nav-link">
+            <i class="fas fa-envelope"></i>
+            <span>Kontak</span>
+        </a>
+    </nav>
 
     <script src="script.js"></script>
 </body>
