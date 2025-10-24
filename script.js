@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function() {
         rootMargin: '0px',
         threshold: 0.1 
     };
-
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -21,43 +20,35 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }, observerOptions);
-
     const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
     elementsToAnimate.forEach(el => {
         observer.observe(el);
     });
 
-    // --- 3. (BARU) Logika Menu Hamburger Responsif ---
-    const hamburger = document.querySelector('.hamburger-menu');
-    const navLinks = document.querySelector('.nav-links');
-    const links = document.querySelectorAll('.nav-links li a');
+    // --- 3. (BARU) Logika Navigasi Aktif saat Scroll ---
+    // Logika ini menggantikan toggle hamburger
+    const sections = document.querySelectorAll('section, header'); // Ambil semua section dan header
+    const navLinks = document.querySelectorAll('.nav-link'); // Ambil semua link (desktop & mobile)
 
-    // Toggle menu saat hamburger di-klik
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        // Ganti ikon hamburger menjadi "X" (opsional)
-        const icon = hamburger.querySelector('i');
-        if (icon.classList.contains('fa-bars')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-    });
+    window.addEventListener('scroll', () => {
+        let current = '';
 
-    // Tutup menu saat salah satu link di-klik (penting untuk single-page)
-    links.forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            // Kembalikan ikon ke "bars"
-            const icon = hamburger.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            // Tentukan section mana yang sedang terlihat di layar
+            if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            // Cek jika href dari link sama dengan ID section yang sedang terlihat
+            if (link.getAttribute('href').includes(current)) {
+                link.classList.add('active');
+            }
         });
     });
-
-    // --- 4. (DIHAPUS) Logika Simulasi Form ---
-    // Tidak diperlukan lagi karena kita menggunakan action "mailto:".
 
 });
