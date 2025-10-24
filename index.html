@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-R-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Profesional Saya</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="#services">Layanan</a></li>
+            <li><a href="#portfolio">Portofolio</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <header id="home">
+        <div class="hero-content">
+            <h1 class="animated-typography">Halo, Saya Programmer</h1>
+            <p>Saya mengubah ide menjadi solusi digital yang fungsional dan elegan.</p>
+            <a href="#portfolio" class="cta-button">Lihat Karya Saya</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="animate-on-scroll">
+            <h2>Tentang Saya</h2>
+            <p>Saya adalah seorang pengembang web dengan pengalaman 5 tahun dalam membangun aplikasi yang skalabel dan responsif. Misi saya adalah menciptakan teknologi yang tidak hanya menyelesaikan masalah, tetapi juga memberikan pengalaman pengguna yang menyenangkan. </p>
+        </section>
+
+        <section id="services" class="animate-on-scroll">
+            <h2>Layanan Saya</h2>
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <i class="fas fa-code"></i>
+                    <h3>Web Development</h3>
+                    <p>Pengembangan website kustom dari awal menggunakan teknologi modern.</p>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Mobile Apps</h3>
+                    <p>Membangun aplikasi mobile cross-platform yang intuitif.</p>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <i class="fas fa-consulting"></i>
+                    <h3>Konsultasi SEO</h3>
+                    <p>Membantu website Anda mendapatkan peringkat teratas di Google.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="animate-on-scroll">
+            <h2>Portofolio</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item animate-on-scroll">
+                    <img src="https://via.placeholder.com/400x300.png?text=Proyek+Satu" alt="Proyek Satu">
+                    <div class="portfolio-overlay">
+                        <h3>Proyek E-commerce</h3>
+                        <p>Studi Kasus</p>
+                    </div>
+                </div>
+                <div class="portfolio-item animate-on-scroll">
+                    <img src="https://via.placeholder.com/400x300.png?text=Proyek+Dua" alt="Proyek Dua">
+                    <div class="portfolio-overlay">
+                        <h3>Aplikasi SaaS</h3>
+                        <p>Studi Kasus</p>
+                    </div>
+                </div>
+                <div class="portfolio-item animate-on-scroll">
+                    <img src="https://via.placeholder.com/400x300.png?text=Proyek+Tiga" alt="Proyek Tiga">
+                    <div class="portfolio-overlay">
+                        <h3>Website Landing Page</h3>
+                        <p>Studi Kasus</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog" class="animate-on-scroll">
+            <h2>Blog Terbaru</h2>
+            <article class="blog-post animate-on-scroll">
+                <h3>5 Tips Optimasi Performa Website di 2025</h3>
+                <p>Pelajari cara membuat website Anda dimuat lebih cepat...</p>
+                <a href="#">Baca Selengkapnya</a>
+            </article>
+            <article class="blog-post animate-on-scroll">
+                <h3>Mengapa Desain Minimalis Penting?</h3>
+                <p>Desain yang bersih bukan hanya soal estetika, tapi juga fungsionalitas...</p>
+                <a href="#">Baca Selengkapnya</a>
+            </article>
+        </section>
+
+        <section id="contact" class="animate-on-scroll">
+            <h2>Hubungi Saya</h2>
+            <p>Ada proyek atau ide yang ingin didiskusikan? Mari terhubung.</p>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="name">Nama:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Pesan:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="cta-button">Kirim Pesan</button>
+                <p id="form-status"></p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025. Dibuat dengan cinta dan kode.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
