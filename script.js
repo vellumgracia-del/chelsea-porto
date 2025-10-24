@@ -25,10 +25,9 @@ document.addEventListener("DOMContentLoaded", function() {
         observer.observe(el);
     });
 
-    // --- 3. (BARU) Logika Navigasi Aktif saat Scroll ---
-    // Logika ini menggantikan toggle hamburger
-    const sections = document.querySelectorAll('section, header'); // Ambil semua section dan header
-    const navLinks = document.querySelectorAll('.nav-link'); // Ambil semua link (desktop & mobile)
+    // --- 3. Logika Navigasi Aktif saat Scroll (Hanya Desktop) ---
+    const sections = document.querySelectorAll('section, header');
+    const navLinks = document.querySelectorAll('.desktop-nav .nav-link');
 
     window.addEventListener('scroll', () => {
         let current = '';
@@ -36,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function() {
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
-            // Tentukan section mana yang sedang terlihat di layar
             if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
                 current = section.getAttribute('id');
             }
@@ -44,10 +42,27 @@ document.addEventListener("DOMContentLoaded", function() {
 
         navLinks.forEach(link => {
             link.classList.remove('active');
-            // Cek jika href dari link sama dengan ID section yang sedang terlihat
             if (link.getAttribute('href').includes(current)) {
                 link.classList.add('active');
             }
+        });
+    });
+    
+    // --- 4. (BARU) Logika Efek Kilau Mouse ---
+    const glassElements = document.querySelectorAll('.glass-effect');
+
+    glassElements.forEach(el => {
+        el.addEventListener('mousemove', (e) => {
+            // Dapatkan posisi elemen relatif terhadap viewport
+            const rect = el.getBoundingClientRect();
+            
+            // Hitung posisi mouse DI DALAM elemen
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Set variabel CSS kustom pada elemen tersebut
+            el.style.setProperty('--mouse-x', `${x}px`);
+            el.style.setProperty('--mouse-y', `${y}px`);
         });
     });
 
