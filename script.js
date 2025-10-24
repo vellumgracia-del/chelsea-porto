@@ -3,63 +3,61 @@ document.addEventListener("DOMContentLoaded", function() {
     // --- 1. Animasi Pemuatan Halaman ---
     const loader = document.querySelector('.loader');
     window.addEventListener('load', () => {
-        // Sembunyikan loader setelah semua konten (termasuk gambar) dimuat
         loader.classList.add('hidden');
     });
 
     // --- 2. Animasi saat Menggulir (Scroll-triggered) ---
-    // Ini adalah cara modern dan sangat efisien (baik untuk performa)
     const observerOptions = {
-        root: null, // 'viewport'
+        root: null, 
         rootMargin: '0px',
-        threshold: 0.1 // 10% elemen harus terlihat
+        threshold: 0.1 
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                observer.unobserve(entry.target); // Berhenti mengamati setelah animasi berjalan
+                observer.unobserve(entry.target); 
             }
         });
     }, observerOptions);
 
-    // Amati semua elemen dengan kelas 'animate-on-scroll'
     const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
     elementsToAnimate.forEach(el => {
         observer.observe(el);
     });
 
-    // --- 3. Animasi Umpan Balik (Micro-interaction) Formulir ---
-    const contactForm = document.getElementById('contact-form');
-    const formStatus = document.getElementById('form-status');
+    // --- 3. (BARU) Logika Menu Hamburger Responsif ---
+    const hamburger = document.querySelector('.hamburger-menu');
+    const navLinks = document.querySelector('.nav-links');
+    const links = document.querySelectorAll('.nav-links li a');
 
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault(); // Mencegah pengiriman form sungguhan (untuk demo)
-        
-        const submitButton = contactForm.querySelector('button');
-        submitButton.disabled = true;
-        submitButton.textContent = 'Mengirim...';
-
-        // Simulasikan proses pengiriman
-        setTimeout(() => {
-            // Tampilkan pesan sukses
-            formStatus.textContent = "Pesan Anda telah terkirim! Terima kasih.";
-            formStatus.className = 'success';
-            submitButton.textContent = 'Terkirim ✅';
-            
-            // Reset form (opsional)
-            contactForm.reset();
-
-            // Kembalikan tombol ke keadaan semula setelah beberapa detik
-            setTimeout(() => {
-                formStatus.textContent = '';
-                formStatus.className = '';
-                submitButton.disabled = false;
-                submitButton.textContent = 'Kirim Pesan';
-            }, 4000);
-
-        }, 1500); // Waktu simulasi 1.5 detik
+    // Toggle menu saat hamburger di-klik
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        // Ganti ikon hamburger menjadi "X" (opsional)
+        const icon = hamburger.querySelector('i');
+        if (icon.classList.contains('fa-bars')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
     });
+
+    // Tutup menu saat salah satu link di-klik (penting untuk single-page)
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            // Kembalikan ikon ke "bars"
+            const icon = hamburger.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        });
+    });
+
+    // --- 4. (DIHAPUS) Logika Simulasi Form ---
+    // Tidak diperlukan lagi karena kita menggunakan action "mailto:".
 
 });
