@@ -48,22 +48,33 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
     
-    // --- 4. (BARU) Logika Efek Kilau Mouse ---
-    const glassElements = document.querySelectorAll('.glass-effect');
-
-    glassElements.forEach(el => {
-        el.addEventListener('mousemove', (e) => {
-            // Dapatkan posisi elemen relatif terhadap viewport
-            const rect = el.getBoundingClientRect();
-            
-            // Hitung posisi mouse DI DALAM elemen
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            // Set variabel CSS kustom pada elemen tersebut
-            el.style.setProperty('--mouse-x', `${x}px`);
-            el.style.setProperty('--mouse-y', `${y}px`);
-        });
-    });
+    // --- 4. (BARU) Logika Slideshow Presentasi ---
+    let slideIndex = 0;
+    showSlides(); // Panggil fungsinya
+    
+    function showSlides() {
+        let i;
+        let slides = document.getElementsByClassName("slide");
+        
+        // Sembunyikan semua slide
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.opacity = "0";  
+        }
+        
+        // Pindah ke slide berikutnya
+        slideIndex++;
+        if (slideIndex > slides.length) {
+            slideIndex = 1; // Kembali ke slide pertama
+        }
+        
+        // Tampilkan slide saat ini
+        if (slides[slideIndex - 1]) { // Cek jika slide ada
+            slides[slideIndex - 1].style.opacity = "1";  
+        }
+        
+        // Panggil fungsi ini lagi "setiap detik sekali" (1000ms)
+        // Ini akan memulai transisi 0.5s setiap 1 detik
+        setTimeout(showSlides, 1000); 
+    }
 
 });
