@@ -3,25 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio Powerful Glassmorphism</title>
+    <title>Portofolio Simple Glow</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-    <div class="background-animation">
-        <div class="shape shape1"></div>
-        <div class="shape shape2"></div>
-        <div class="shape shape3"></div>
-        <div class="shape shape4"></div>
-        <div class="shape shape5"></div>
-    </div>
-
     <div class="loader">
         <div class="spinner"></div>
     </div>
 
-    <nav class="desktop-nav glass-effect">
+    <nav class="desktop-nav card-effect">
         <ul class="nav-links">
             <li><a href="#home" class="nav-link active">Beranda</a></li>
             <li><a href="#about" class="nav-link">Tentang</a></li>
@@ -31,34 +23,51 @@
         </ul>
     </nav>
 
-    <header id="home">
-        <div class="hero-content">
-            <h1 class="animated-typography">Powerful Glassmorphism</h1>
-            <p>Solusi digital yang fungsional dan elegan, didorong oleh estetika murni.</p>
-            <a href="#portfolio" class="cta-button">Lihat Karya Saya</a>
+    <header id="home" class="slideshow-container">
+        
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzOTAwOTB8MHwxfHNlYXJjaHwxfHxjb2RpbmclMjBkZXNrdG9wfGVufDB8MHx8fDE3Mjk0MzM5ODV8MA&ixlib=rb-4.0.3&q=80&w=1920');">
+            <div class="hero-content">
+                <h1 class="animated-typography">Halo, Saya Programmer</h1>
+                <p>Solusi digital yang fungsional dan elegan.</p>
+            </div>
         </div>
+
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzOTAwOTB8MHwxfHNlYXJjaHwyfHxjb2Rpbmd8ZW58MHwwfHx8MTcyOTQzMzk4NXww&ixlib=rb-4.0.3&q=80&w=1920');">
+            <div class="hero-content">
+                <h1>Portofolio Kreatif</h1>
+                <p>Menampilkan proyek-proyek inovatif.</p>
+            </div>
+        </div>
+
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzOTAwOTB8MHwxfHNlYXJjaHw1fHxsYXB0b3AlMjBjb2Rpbmd8ZW58MHwwfHx8MTcyOTQzMzk4Nnww&ixlib=rb-4.0.3&q=80&w=1920');">
+            <div class="hero-content">
+                <h1>Mari Berkolaborasi</h1>
+                <p>Wujudkan ide Anda menjadi kenyataan.</p>
+            </div>
+        </div>
+
     </header>
 
     <main>
-        <section id="about" class="animate-on-scroll glass-effect">
+        <section id="about" class="animate-on-scroll card-effect">
             <h2>Tentang Saya</h2>
             <p>Saya adalah seorang pengembang web dengan pengalaman 5 tahun dalam membangun aplikasi yang skalabel dan responsif. Misi saya adalah menciptakan teknologi yang tidak hanya menyelesaikan masalah, tetapi juga memberikan pengalaman pengguna yang menyenangkan.</p>
         </section>
 
-        <section id="services" class="animate-on-scroll glass-effect">
+        <section id="services" class="animate-on-scroll card-effect">
             <h2>Layanan Saya</h2>
             <div class="services-grid">
-                <div class="service-card animate-on-scroll glass-effect">
+                <div class="service-card animate-on-scroll card-effect">
                     <i class="fas fa-code"></i>
                     <h3>Web Development</h3>
                     <p>Pengembangan website kustom dari awal.</p>
                 </div>
-                <div class="service-card animate-on-scroll glass-effect">
+                <div class="service-card animate-on-scroll card-effect">
                     <i class="fas fa-mobile-alt"></i>
                     <h3>Mobile Apps</h3>
                     <p>Membangun aplikasi mobile cross-platform.</p>
                 </div>
-                <div class="service-card animate-on-scroll glass-effect">
+                <div class="service-card animate-on-scroll card-effect">
                     <i class="fas fa-search-dollar"></i>
                     <h3>Konsultasi SEO</h3>
                     <p>Membantu website Anda di peringkat Google.</p>
@@ -66,7 +75,7 @@
             </div>
         </section>
 
-        <section id="portfolio" class="animate-on-scroll glass-effect">
+        <section id="portfolio" class="animate-on-scroll card-effect">
             <h2>Portofolio</h2>
             <div class="portfolio-grid">
                 <div class="portfolio-item animate-on-scroll">
@@ -86,29 +95,29 @@
             </div>
         </section>
 
-        <section id="contact" class="animate-on-scroll glass-effect">
+        <section id="contact" class="animate-on-scroll card-effect">
             <h2>Hubungi Saya</h2>
             <p>Ada proyek atau ide yang ingin didiskusikan? Mari terhubung.</p>
             
             <form action="mailto:emailanda@example.com" method="POST" enctype="text/plain">
                 <div class="form-group">
                     <label for="name">Nama:</label>
-                    <input type="text" id="name" name="Nama" required class="glass-input">
+                    <input type="text" id="name" name="Nama" required class="simple-input">
                 </div>
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="Email_Pengirim" required class="glass-input">
+                    <input type="email" id="email" name="Email_Pengirim" required class="simple-input">
                 </div>
                 <div class="form-group">
                     <label for="message">Pesan:</label>
-                    <textarea id="message" name="Pesan" rows="5" required class="glass-input"></textarea>
+                    <textarea id="message" name="Pesan" rows="5" required class="simple-input"></textarea>
                 </div>
                 <button type="submit" class="cta-button">Kirim via Email</button>
             </form>
         </section>
     </main>
 
-    <footer class="glass-effect">
+    <footer class="card-effect">
         <p>&copy; 2025. Dibuat dengan cinta dan kode.</p>
     </footer>
 
